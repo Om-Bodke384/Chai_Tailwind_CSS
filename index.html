@@ -1,67 +1,341 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Om | Developer</title>
-  <script src="./chai.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai Tailwind CSS Docs</title>
+  <meta
+    name="description"
+    content="Documentation website for Chai Tailwind CSS, a lightweight utility-first styling system built in JavaScript."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/gh/Om-Bodke384/Chai_Tailwind_CSS@main/index.js"></script>
 </head>
-<!-- raw resume -->
-<body class="chai-p-20">
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <span class="brand-mark">C</span>
+        <span class="brand-copy">
+          <strong>Chai Tailwind CSS</strong>
+          <small>Utility-first styling in plain JavaScript</small>
+        </span>
+      </a>
 
-  
-  <div class="chai-text-center chai-m-20">
-    <h1 class="chai-fs-40">Hi, I'm Om 👋</h1>
-    <p class="chai-fs-20">Computer Engineering Student | Full Stack Learner</p>
+      <nav class="site-nav">
+        <a href="#what-is-it">What is it</a>
+        <a href="#install">Install</a>
+        <a href="#utilities">Utilities</a>
+        <a href="#examples">Examples</a>
+        <a href="#playground">Playground</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Docs</p>
+          <h1>Build fast UI with `chai-*` utility classes.</h1>
+          <p class="hero-text">
+            Chai Tailwind CSS is a lightweight utility-first styling system built from scratch in JavaScript.
+            It reads class names that start with `chai-` and applies inline styles directly to your HTML elements.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#install">Start with CDN</a>
+            <a class="button button-secondary" href="https://github.com/Om-Bodke384/Chai_Tailwind_CSS" target="_blank" rel="noreferrer">View GitHub</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <strong>Zero build step</strong>
+              <span>Drop in the script and use utility classes.</span>
+            </div>
+            <div class="stat-card">
+              <strong>HTML-first</strong>
+              <span>Designed for direct usage inside markup.</span>
+            </div>
+            <div class="stat-card">
+              <strong>Beginner-friendly</strong>
+              <span>Clear naming like `chai-p-20` and `chai-bg-red`.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="window">
+            <div class="window-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/Om-Bodke384/Chai_Tailwind_CSS@main/index.js"&gt;&lt;/script&gt;
+
+&lt;div class="chai-bg-tomato chai-textcol-white chai-p-24 chai-br-18"&gt;
+  Hello from Chai Tailwind CSS
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="live-card chai-bg-wheat chai-p-24 chai-br-20">
+            <div class="chai-center chai-bg-tomato chai-textcol-white chai-br-16" style="height: 82px;">
+              Rendered by the CDN script
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="what-is-it" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>What it is</h2>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <h3>Utility-first classes</h3>
+            <p>
+              Instead of writing CSS rules, you compose styles with classes like `chai-p-20`,
+              `chai-bg-blue`, `chai-flex`, and `chai-cols-3`.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Runtime parser</h3>
+            <p>
+              On `DOMContentLoaded`, the script scans elements whose class attribute contains `chai-`
+              and converts those utilities into inline styles.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Best use case</h3>
+            <p>
+              This works well for simple sites, experiments, demos, and learning how utility systems map classes to styles.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="install" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Setup</p>
+          <h2>How to use it</h2>
+        </div>
+
+        <div class="install-grid">
+          <article class="install-card">
+            <h3>1. Add the CDN script</h3>
+            <div class="code-block">
+              <button class="copy-button" data-copy="cdn-snippet">Copy</button>
+              <pre id="cdn-snippet"><code>&lt;script src="https://cdn.jsdelivr.net/gh/Om-Bodke384/Chai_Tailwind_CSS@main/index.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="install-card">
+            <h3>2. Use `chai-*` classes in HTML</h3>
+            <div class="code-block">
+              <button class="copy-button" data-copy="usage-snippet">Copy</button>
+              <pre id="usage-snippet"><code>&lt;div class="chai-bg-red chai-textcol-white chai-p-20 chai-br-12"&gt;
+  Card content
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+
+        <p class="note">
+          Current behavior is based on the present `index.js` parser: classes are read once on page load, so dynamically-added classes
+          will need manual reprocessing if you want them applied later.
+        </p>
+      </section>
+
+      <section id="utilities" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Reference</p>
+          <h2>Available utilities</h2>
+        </div>
+
+        <div class="utility-table">
+          <div class="utility-row utility-head">
+            <span>Category</span>
+            <span>Class</span>
+            <span>Result</span>
+          </div>
+          <div class="utility-row">
+            <span>Colors</span>
+            <code>chai-bg-{color}</code>
+            <span>Sets `background-color`</span>
+          </div>
+          <div class="utility-row">
+            <span>Colors</span>
+            <code>chai-textcol-{color}</code>
+            <span>Sets text color</span>
+          </div>
+          <div class="utility-row">
+            <span>Spacing</span>
+            <code>chai-p-{number}</code>
+            <span>Sets padding in pixels</span>
+          </div>
+          <div class="utility-row">
+            <span>Spacing</span>
+            <code>chai-m-{number}</code>
+            <span>Sets margin in pixels</span>
+          </div>
+          <div class="utility-row">
+            <span>Size</span>
+            <code>chai-w-{number}</code>
+            <span>Sets width in pixels</span>
+          </div>
+          <div class="utility-row">
+            <span>Size</span>
+            <code>chai-h-{number}</code>
+            <span>Sets height in pixels</span>
+          </div>
+          <div class="utility-row">
+            <span>Typography</span>
+            <code>chai-fs-{number}</code>
+            <span>Sets font size in pixels</span>
+          </div>
+          <div class="utility-row">
+            <span>Typography</span>
+            <code>chai-text-{alignment}</code>
+            <span>Sets text alignment</span>
+          </div>
+          <div class="utility-row">
+            <span>Border</span>
+            <code>chai-br-{number}</code>
+            <span>Sets border radius in pixels</span>
+          </div>
+          <div class="utility-row">
+            <span>Flex</span>
+            <code>chai-flex</code>
+            <span>Sets `display: flex`</span>
+          </div>
+          <div class="utility-row">
+            <span>Flex</span>
+            <code>chai-center</code>
+            <span>Centers content with flex</span>
+          </div>
+          <div class="utility-row">
+            <span>Flex</span>
+            <code>chai-between</code>
+            <span>Flex with `space-between`</span>
+          </div>
+          <div class="utility-row">
+            <span>Flex</span>
+            <code>chai-col</code>
+            <span>Sets flex direction to column</span>
+          </div>
+          <div class="utility-row">
+            <span>Grid</span>
+            <code>chai-grid</code>
+            <span>Sets `display: grid`</span>
+          </div>
+          <div class="utility-row">
+            <span>Grid</span>
+            <code>chai-cols-{number}</code>
+            <span>Creates repeated grid columns</span>
+          </div>
+          <div class="utility-row">
+            <span>Grid</span>
+            <code>chai-rows-{number}</code>
+            <span>Creates repeated grid rows</span>
+          </div>
+          <div class="utility-row">
+            <span>Grid</span>
+            <code>chai-gap-{number}</code>
+            <span>Sets gap in pixels</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="examples" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Examples</p>
+          <h2>Live patterns</h2>
+        </div>
+
+        <div class="example-grid">
+          <article class="example-card">
+            <h3>Simple card</h3>
+            <div class="example-preview">
+              <div class="chai-bg-seagreen chai-textcol-white chai-p-20 chai-br-18">
+                Quick demo card
+              </div>
+            </div>
+            <pre><code>&lt;div class="chai-bg-seagreen chai-textcol-white chai-p-20 chai-br-18"&gt;
+  Quick demo card
+&lt;/div&gt;</code></pre>
+          </article>
+
+          <article class="example-card">
+            <h3>Centered box</h3>
+            <div class="example-preview">
+              <div class="chai-center chai-bg-gold chai-br-18" style="height: 120px;">
+                Centered content
+              </div>
+            </div>
+            <pre><code>&lt;div class="chai-center chai-bg-gold chai-br-18" style="height:120px;"&gt;
+  Centered content
+&lt;/div&gt;</code></pre>
+          </article>
+
+          <article class="example-card">
+            <h3>Three-column grid</h3>
+            <div class="example-preview">
+              <div class="chai-grid chai-cols-3 chai-gap-10">
+                <div class="tile">1</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+              </div>
+            </div>
+            <pre><code>&lt;div class="chai-grid chai-cols-3 chai-gap-10"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section id="playground" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Playground</p>
+          <h2>Try class combinations</h2>
+        </div>
+
+        <div class="playground">
+          <div class="playground-controls">
+            <label for="classInput">Classes</label>
+            <input
+              id="classInput"
+              type="text"
+              value="chai-bg-tomato chai-textcol-white chai-p-24 chai-br-18 chai-text-center"
+            >
+
+            <label for="contentInput">Content</label>
+            <input
+              id="contentInput"
+              type="text"
+              value="This preview updates as you type."
+            >
+
+            <p class="playground-help">
+              The playground mirrors the current parser from the repository so you can test combinations before using them in HTML.
+            </p>
+          </div>
+
+          <div class="playground-stage">
+            <div id="playgroundPreview" class="playground-preview">
+              This preview updates as you type.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <div class="chai-bg-lightgray chai-p-20 chai-m-20">
-    <h2>About Me</h2>
-    <p>
-      I am a developer passionate about building systems from scratch.
-      Currently learning full-stack development and working on my own CSS engine.
-    </p>
-  </div>
-
-  
-  <div class="chai-p-20 chai-m-20">
-    <h2>Projects</h2>
-
-    <div class="chai-flex chai-between chai-gap-20">
-
-      <div class="chai-p-20 chai-bg-red chai-br-10">
-        <h3>Chai CSS Engine</h3>
-        <p>Utility-first CSS engine using JavaScript</p>
-      </div>
-
-      <div class="chai-p-20 chai-bg-lightblue chai-br-10">
-        <h3>College App</h3>
-        <p>Attendance + academic tracking system</p>
-      </div>
-
-    </div>
-  </div>
-
-  
-  <div class="chai-bg-lightgray chai-p-20 chai-m-20">
-    <h2>Skills</h2>
-
-    <div class="chai-grid chai-cols-3 chai-gap-10">
-      <div>HTML</div>
-      <div>CSS</div>
-      <div>JavaScript</div>
-      <div>React</div>
-      <div>Python</div>
-      <div>C++</div>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="chai-text-center chai-m-20">
-    <h2>Contact</h2>
-    <p>Email: ombodke081@gmail.com</p>
-    <p>LinkedIn: www.linkedin.com/in/om-bodke-851b053a92</p>
-  </div>
-
+  <script src="script.js"></script>
 </body>
-  <script defer src="https://cdn.jsdelivr.net/gh/Om-Bodke384/Chai_Tailwind_CSS@main/index.js"></script>
-
 </html>
