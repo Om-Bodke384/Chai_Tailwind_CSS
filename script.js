@@ -1,137 +1,116 @@
-const copyButtons = document.querySelectorAll("[data-copy]");
-const playgroundPreview = document.getElementById("playgroundPreview");
+const copyButtons = document.querySelectorAll(".copy-btn");
 const classInput = document.getElementById("classInput");
-const contentInput = document.getElementById("contentInput");
-const animatedCards = document.querySelectorAll(".info-card, .install-card, .example-card");
+const textInput = document.getElementById("textInput");
+const previewBox = document.getElementById("previewBox");
 
-copyButtons.forEach((button) => {
-  button.addEventListener("click", async () => {
-    const target = document.getElementById(button.dataset.copy);
-    const text = target?.innerText ?? "";
+copyButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const targetId = button.getAttribute("data-copy");
+    const text = document.getElementById(targetId).innerText;
 
-    try {
-      await navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(function () {
       button.textContent = "Copied";
-      setTimeout(() => {
+
+      setTimeout(function () {
         button.textContent = "Copy";
-      }, 1400);
-    } catch (error) {
-      button.textContent = "Failed";
-      setTimeout(() => {
-        button.textContent = "Copy";
-      }, 1400);
-    }
+      }, 1200);
+    });
   });
 });
 
-const applyPlaygroundStyles = () => {
-  playgroundPreview.className = "playground-preview";
-  playgroundPreview.removeAttribute("style");
-  playgroundPreview.textContent = contentInput.value || "Preview";
+function applyChaiStyles(element, className) {
+  const parts = className.split("-");
 
-  const classes = classInput.value.trim().split(/\s+/).filter(Boolean);
-
-  classes.forEach((clas) => {
-    if (clas.startsWith("chai-")) {
-      applyInlineStyle(playgroundPreview, clas);
-    }
-  });
-};
-
-function applyInlineStyle(element, clas) {
-  const eachClass = clas.split("-");
-
-  if (eachClass[1] === "bg") {
-    element.style.backgroundColor = eachClass[2];
+  if (parts[1] === "bg") {
+    element.style.backgroundColor = parts[2];
   }
 
-  if (eachClass[1] === "textcol") {
-    element.style.color = eachClass[2];
+  if (parts[1] === "textcol") {
+    element.style.color = parts[2];
   }
 
-  if (eachClass[1] === "p") {
-    element.style.padding = eachClass[2] + "px";
+  if (parts[1] === "p") {
+    element.style.padding = parts[2] + "px";
   }
 
-  if (eachClass[1] === "m") {
-    element.style.margin = eachClass[2] + "px";
+  if (parts[1] === "m") {
+    element.style.margin = parts[2] + "px";
   }
 
-  if (eachClass[1] === "w") {
-    element.style.width = eachClass[2] + "px";
+  if (parts[1] === "w") {
+    element.style.width = parts[2] + "px";
   }
 
-  if (eachClass[1] === "h") {
-    element.style.height = eachClass[2] + "px";
+  if (parts[1] === "h") {
+    element.style.height = parts[2] + "px";
   }
 
-  if (eachClass[1] === "fs") {
-    element.style.fontSize = eachClass[2] + "px";
+  if (parts[1] === "fs") {
+    element.style.fontSize = parts[2] + "px";
   }
 
-  if (eachClass[1] === "text") {
-    element.style.textAlign = eachClass[2];
+  if (parts[1] === "text") {
+    element.style.textAlign = parts[2];
   }
 
-  if (eachClass[1] === "br") {
-    element.style.borderRadius = eachClass[2] + "px";
+  if (parts[1] === "br") {
+    element.style.borderRadius = parts[2] + "px";
   }
 
-  if (clas === "chai-flex") {
+  if (className === "chai-flex") {
     element.style.display = "flex";
   }
 
-  if (clas === "chai-center") {
+  if (className === "chai-center") {
     element.style.display = "flex";
     element.style.justifyContent = "center";
     element.style.alignItems = "center";
   }
 
-  if (clas === "chai-between") {
+  if (className === "chai-between") {
     element.style.display = "flex";
     element.style.justifyContent = "space-between";
   }
 
-  if (clas === "chai-col") {
+  if (className === "chai-col") {
     element.style.display = "flex";
     element.style.flexDirection = "column";
   }
 
-  if (clas === "chai-grid") {
+  if (className === "chai-grid") {
     element.style.display = "grid";
   }
 
-  if (eachClass[1] === "rows") {
+  if (parts[1] === "cols") {
     element.style.display = "grid";
-    element.style.gridTemplateRows = "repeat(" + eachClass[2] + ", 1fr)";
+    element.style.gridTemplateColumns = "repeat(" + parts[2] + ", 1fr)";
   }
 
-  if (eachClass[1] === "cols") {
+  if (parts[1] === "rows") {
     element.style.display = "grid";
-    element.style.gridTemplateColumns = "repeat(" + eachClass[2] + ", 1fr)";
+    element.style.gridTemplateRows = "repeat(" + parts[2] + ", 1fr)";
   }
 
-  if (eachClass[1] === "gap") {
-    element.style.gap = eachClass[2] + "px";
+  if (parts[1] === "gap") {
+    element.style.gap = parts[2] + "px";
   }
 }
 
-[classInput, contentInput].forEach((input) => {
-  input.addEventListener("input", applyPlaygroundStyles);
-});
+function updatePreview() {
+  previewBox.className = "preview-box";
+  previewBox.removeAttribute("style");
+  previewBox.textContent = textInput.value || "Preview text";
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
+  const classes = classInput.value.split(" ");
 
-animatedCards.forEach((card) => observer.observe(card));
+  classes.forEach(function (item) {
+    if (item.startsWith("chai-")) {
+      applyChaiStyles(previewBox, item);
+    }
+  });
+}
 
-applyPlaygroundStyles();
+classInput.addEventListener("input", updatePreview);
+textInput.addEventListener("input", updatePreview);
+
+updatePreview();
